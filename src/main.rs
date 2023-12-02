@@ -19,12 +19,7 @@ async fn warp() -> shuttle_warp::ShuttleWarp<(impl Reply,)> {
 
     let route = hello
         .or(error)
-        .or(day1_router())
-        // .recover(|r| async move {
-        //     println!("===>>>> {:?}", r);
-        //     Ok::<WithStatus<_>, Rejection>(warp::reply::with_status("INTERNAL_SERVER_ERROR", StatusCode::INTERNAL_SERVER_ERROR))
-        // })
-        ;
+        .or(day1_router());
 
     Ok(route.boxed().into())
 }
